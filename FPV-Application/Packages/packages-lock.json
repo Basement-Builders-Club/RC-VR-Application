@@ -219,6 +219,44 @@
       },
       "url": "https://packages.unity.com"
     },
+    "io.extendreality.tilia.camerarigs.spatialsimulator.unity": {
+      "version": "2.2.17",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "io.extendreality.zinnia.unity": "2.16.1",
+        "io.extendreality.tilia.utilities.shaders.unity": "1.4.0",
+        "io.extendreality.tilia.input.unityinputmanager": "2.1.14"
+      },
+      "url": "https://registry.npmjs.org"
+    },
+    "io.extendreality.tilia.camerarigs.trackedalias.unity": {
+      "version": "2.5.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "io.extendreality.zinnia.unity": "2.16.1"
+      },
+      "url": "https://registry.npmjs.org"
+    },
+    "io.extendreality.tilia.camerarigs.unityxr": {
+      "version": "2.1.13",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "io.extendreality.zinnia.unity": "2.16.1"
+      },
+      "url": "https://registry.npmjs.org"
+    },
+    "io.extendreality.tilia.input.unityinputmanager": {
+      "version": "2.1.14",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "io.extendreality.zinnia.unity": "2.16.1"
+      },
+      "url": "https://registry.npmjs.org"
+    },
     "io.extendreality.tilia.interactions.controllables.unity": {
       "version": "2.10.28",
       "depth": 0,
@@ -236,6 +274,13 @@
       "dependencies": {
         "io.extendreality.zinnia.unity": "2.16.1"
       },
+      "url": "https://registry.npmjs.org"
+    },
+    "io.extendreality.tilia.utilities.shaders.unity": {
+      "version": "1.4.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://registry.npmjs.org"
     },
     "io.extendreality.zinnia.unity": {
