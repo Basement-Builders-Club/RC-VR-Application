@@ -10,7 +10,7 @@ public class PoseServer : MonoBehaviour
     private TcpClient client;
     private NetworkStream stream;
 
-    public GameObject wheel; // The object whose angle you want to send
+    public GameObject targetObject; // The object whose angle you want to send
 
     void Start()
     {
@@ -34,11 +34,8 @@ public class PoseServer : MonoBehaviour
     {
         if (client != null && client.Connected)
         {
-            // Get the object's angle (e.g., rotation around the z-axis)
-            float angle = wheel.transform.eulerAngles.z;
-
-            // Log the angle to the console
-            Debug.Log("Angle: " + angle);
+            // Get the object's angle (e.g., rotation around the Z-axis)
+            float angle = targetObject.transform.eulerAngles.z;
 
             // Convert the angle to a byte array
             byte[] angleData = Encoding.UTF8.GetBytes(angle.ToString());
@@ -47,7 +44,6 @@ public class PoseServer : MonoBehaviour
             stream.Write(angleData, 0, angleData.Length);
         }
     }
-
 
     void OnApplicationQuit()
     {

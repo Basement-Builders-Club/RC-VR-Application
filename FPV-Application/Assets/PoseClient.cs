@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
-public class PoseClientPoseClient : MonoBehaviour
+public class PoseClient : MonoBehaviour
 {
     private TcpClient client;
     private NetworkStream stream;
