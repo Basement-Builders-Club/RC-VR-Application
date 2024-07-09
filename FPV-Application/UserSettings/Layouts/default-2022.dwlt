@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Game
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -397,7 +397,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: d46a0000
       m_LastClickedID: 27348
-      m_ExpandedIDs: 04fbffff16fbffff1afbffff22fbffff28fbffff2afbffffe86a0000
+      m_ExpandedIDs: 2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -936,9 +936,9 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 1
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -949,18 +949,18 @@ MonoBehaviour:
       y: 21
       width: 1187
       height: 635
-    m_Scale: {x: 0.6024939, y: 0.6024939}
-    m_Translation: {x: 593.5, y: 325.3467}
+    m_Scale: {x: 0.6205687, y: 0.6205687}
+    m_Translation: {x: 595.746, y: 326.8571}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -985.07227
-      y: -540
-      width: 1970.1445
-      height: 1053.9526
+      x: -960.00006
+      y: -526.70575
+      width: 1912.7616
+      height: 1023.25494
     m_MinimalGUI: 1
   m_defaultScale: 0.587963
   m_LastWindowPixelSize: {x: 1187, y: 656}
