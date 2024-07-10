@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PoseServer : MonoBehaviour
 {
@@ -11,6 +12,32 @@ public class PoseServer : MonoBehaviour
     private NetworkStream stream;
 
     public GameObject wheel;
+    private bool triggerPressed;
+    private PlayerInputActions inputActions;
+
+    void Awake()
+    {
+        inputActions = new PlayerInputActions();
+    }
+
+    void OnEnable()
+    {
+        inputActions.Enable();
+        inputActions.Player.TriggerAction.performed += OnTriggerAction;
+        inputActions.Player.TriggerAction.canceled += OnTriggerAction;
+    }
+
+    void OnDisable()
+    {
+        inputActions.Player.TriggerAction.performed -= OnTriggerAction;
+        inputActions.Player.TriggerAction.canceled -= OnTriggerAction;
+        inputActions.Disable();
+    }
+
+    private void OnTriggerAction(InputAction.CallbackContext context)
+    {
+        triggerPressed = context.ReadValueAsButton();
+    }
 
     void Start()
     {
@@ -37,11 +64,15 @@ public class PoseServer : MonoBehaviour
             // Get the wheel's rotation about the z axis
             float angle = wheel.transform.eulerAngles.z;
 
-            // Convert the angle to a byte array
-            byte[] angleData = Encoding.UTF8.GetBytes(angle.ToString());
+            // Create the message to send
+            string message = $"{angle},{triggerPressed}";
 
-            // Send the angle data to the client
-            stream.Write(angleData, 0, angleData.Length);
+            // Convert the message to a byte array
+            byte[] messageData = Encoding.UTF8.GetBytes(message);
+
+            // Send the message data to the client
+            stream.Write(messageData, 0, messageData.Length);
+            Debug.Log("Sent Message: " + message);
         }
     }
 
