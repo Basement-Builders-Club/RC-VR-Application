@@ -65,7 +65,8 @@ public class PoseServer : MonoBehaviour
             float angle = wheel.transform.eulerAngles.z;
 
             // Create the message to send
-            string message = $"{angle},{triggerPressed}";
+            int triggerVal = triggerPressed ? 1 : 0;
+            string message = $"{angle},{triggerVal}";
 
             // Convert the message to a byte array
             byte[] messageData = Encoding.UTF8.GetBytes(message);
