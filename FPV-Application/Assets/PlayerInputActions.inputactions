@@ -6,9 +6,18 @@
             "id": "1e9315c1-2ccd-457c-b915-879c3a567486",
             "actions": [
                 {
-                    "name": "TriggerAction",
+                    "name": "Forward",
                     "type": "Button",
                     "id": "96f55f3a-6cff-478d-a711-595a9f69567c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Backward",
+                    "type": "Button",
+                    "id": "1847af4a-1ca0-46c5-8f86-c461ea95c8dc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -19,11 +28,11 @@
                 {
                     "name": "",
                     "id": "0bb10d81-d5ed-4c79-9fa9-146107e88701",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TriggerAction",
+                    "action": "Forward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -34,7 +43,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TriggerAction",
+                    "action": "Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1515487-970b-49f3-a450-9ec2025ecb3b",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Backward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "464b7c06-32ae-42ad-84b9-5a7ba01fbe31",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Backward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

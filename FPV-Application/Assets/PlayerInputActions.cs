@@ -28,9 +28,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""1e9315c1-2ccd-457c-b915-879c3a567486"",
             ""actions"": [
                 {
-                    ""name"": ""TriggerAction"",
+                    ""name"": ""Forward"",
                     ""type"": ""Button"",
                     ""id"": ""96f55f3a-6cff-478d-a711-595a9f69567c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Backward"",
+                    ""type"": ""Button"",
+                    ""id"": ""1847af4a-1ca0-46c5-8f86-c461ea95c8dc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -41,11 +50,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0bb10d81-d5ed-4c79-9fa9-146107e88701"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TriggerAction"",
+                    ""action"": ""Forward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -56,7 +65,29 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TriggerAction"",
+                    ""action"": ""Forward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1515487-970b-49f3-a450-9ec2025ecb3b"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Backward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""464b7c06-32ae-42ad-84b9-5a7ba01fbe31"",
+                    ""path"": ""<XRController>{LeftHand}/{TriggerButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Backward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -67,7 +98,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_TriggerAction = m_Player.FindAction("TriggerAction", throwIfNotFound: true);
+        m_Player_Forward = m_Player.FindAction("Forward", throwIfNotFound: true);
+        m_Player_Backward = m_Player.FindAction("Backward", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -129,12 +161,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_TriggerAction;
+    private readonly InputAction m_Player_Forward;
+    private readonly InputAction m_Player_Backward;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @TriggerAction => m_Wrapper.m_Player_TriggerAction;
+        public InputAction @Forward => m_Wrapper.m_Player_Forward;
+        public InputAction @Backward => m_Wrapper.m_Player_Backward;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -144,16 +178,22 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @TriggerAction.started += instance.OnTriggerAction;
-            @TriggerAction.performed += instance.OnTriggerAction;
-            @TriggerAction.canceled += instance.OnTriggerAction;
+            @Forward.started += instance.OnForward;
+            @Forward.performed += instance.OnForward;
+            @Forward.canceled += instance.OnForward;
+            @Backward.started += instance.OnBackward;
+            @Backward.performed += instance.OnBackward;
+            @Backward.canceled += instance.OnBackward;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @TriggerAction.started -= instance.OnTriggerAction;
-            @TriggerAction.performed -= instance.OnTriggerAction;
-            @TriggerAction.canceled -= instance.OnTriggerAction;
+            @Forward.started -= instance.OnForward;
+            @Forward.performed -= instance.OnForward;
+            @Forward.canceled -= instance.OnForward;
+            @Backward.started -= instance.OnBackward;
+            @Backward.performed -= instance.OnBackward;
+            @Backward.canceled -= instance.OnBackward;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -173,6 +213,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnTriggerAction(InputAction.CallbackContext context);
+        void OnForward(InputAction.CallbackContext context);
+        void OnBackward(InputAction.CallbackContext context);
     }
 }

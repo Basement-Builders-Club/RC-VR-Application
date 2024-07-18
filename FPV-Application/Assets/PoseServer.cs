@@ -12,7 +12,8 @@ public class PoseServer : MonoBehaviour
     private NetworkStream stream;
 
     public GameObject wheel;
-    private bool triggerPressed;
+    private bool rightTriggerPressed;
+    private bool leftTriggerPressed;
     private PlayerInputActions inputActions;
 
     void Awake()
@@ -23,20 +24,29 @@ public class PoseServer : MonoBehaviour
     void OnEnable()
     {
         inputActions.Enable();
-        inputActions.Player.TriggerAction.performed += OnTriggerAction;
-        inputActions.Player.TriggerAction.canceled += OnTriggerAction;
+        inputActions.Player.Forward.performed += OnRightTriggerAction;
+        inputActions.Player.Forward.canceled += OnRightTriggerAction;
+        inputActions.Player.Backward.performed += OnLeftTriggerAction;
+        inputActions.Player.Backward.canceled += OnLeftTriggerAction;
     }
 
     void OnDisable()
     {
-        inputActions.Player.TriggerAction.performed -= OnTriggerAction;
-        inputActions.Player.TriggerAction.canceled -= OnTriggerAction;
+        inputActions.Player.Forward.performed -= OnRightTriggerAction;
+        inputActions.Player.Forward.canceled -= OnRightTriggerAction;
+        inputActions.Player.Backward.performed -= OnLeftTriggerAction;
+        inputActions.Player.Backward.canceled -= OnLeftTriggerAction;
         inputActions.Disable();
     }
 
-    private void OnTriggerAction(InputAction.CallbackContext context)
+    private void OnRightTriggerAction(InputAction.CallbackContext context)
     {
-        triggerPressed = context.ReadValueAsButton();
+        rightTriggerPressed = context.ReadValueAsButton();
+    }
+
+    private void OnLeftTriggerAction(InputAction.CallbackContext context)
+    {
+        leftTriggerPressed = context.ReadValueAsButton();
     }
 
     void Start()
@@ -65,7 +75,16 @@ public class PoseServer : MonoBehaviour
             float angle = wheel.transform.eulerAngles.z;
 
             // Create the message to send
-            int triggerVal = triggerPressed ? 1 : 0;
+            int triggerVal = 0;
+            if (rightTriggerPressed)
+            {
+                triggerVal += 1;
+            }
+            if (leftTriggerPressed)
+            {
+                triggerVal -= 1;
+            }
+
             string message = $"{angle},{triggerVal}";
 
             // Convert the message to a byte array
