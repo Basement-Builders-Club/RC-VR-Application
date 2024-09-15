@@ -72,10 +72,10 @@ public class PoseServer : MonoBehaviour
         if (client != null && client.Connected)
         {
             // Get the wheel's rotation about the z axis
-            float angle = wheel.transform.eulerAngles.z;
+            int angle = (int) wheel.transform.eulerAngles.z;
 
             // Create the message to send
-            int triggerVal = 0;
+            int triggerVal = 1;
             if (rightTriggerPressed)
             {
                 triggerVal += 1;
@@ -85,7 +85,7 @@ public class PoseServer : MonoBehaviour
                 triggerVal -= 1;
             }
 
-            string message = $"{angle},{triggerVal}";
+            string message = $"~,{angle},{triggerVal};";
 
             // Convert the message to a byte array
             byte[] messageData = Encoding.UTF8.GetBytes(message);

@@ -29,21 +29,24 @@ public class PoseClient : MonoBehaviour
             while (true)
             {
                 // Buffer to store the data
-                byte[] data = new byte[256];
+                byte[] data = new byte[8];
                 int bytes = stream.Read(data, 0, data.Length);
 
                 // Convert the byte array to a string
                 string message = Encoding.UTF8.GetString(data, 0, bytes);
 
                 // Split the message into angle and trigger state
-                string[] parts = message.Split(',');
-                if (parts.Length == 2)
+                string packet = message.Split(';')[0];
+                string[] parts = packet.Split(',');
+                
+                if (parts.Length == 3)
                 {
-                    if (float.TryParse(parts[0], out float angle) && bool.TryParse(parts[1], out bool triggerPressed))
-                    {
+                    //Debug.Log(parts[1] + " " + parts[2]);
+                    int.TryParse(parts[1], out int angle); int.TryParse(parts[2], out int triggerPressed);
+                    //{
                         // Output the angle and trigger state
-                        Debug.Log("Received Angle: " + angle + ", Trigger Pressed: " + triggerPressed);
-                    }
+                        Debug.Log("Received Angle: " + angle + ", Trigger State: " + triggerPressed);
+                    //}
                 }
             }
         }
