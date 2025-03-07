@@ -79,7 +79,7 @@ public class PoseServer : MonoBehaviour
             int angle = (int) wheel.transform.eulerAngles.z;
 
             // Create the message to send
-            int triggerVal = (int)((rightTriggerPressed - leftTriggerPressed) * 10000);
+            int triggerVal = (int)((rightTriggerPressed - leftTriggerPressed) * 100);
             Debug.Log($"Right: {rightTriggerPressed}, Left: {leftTriggerPressed}, TriggerVal: {triggerVal}");
 
             string message = $"~,{angle},{triggerVal};";
