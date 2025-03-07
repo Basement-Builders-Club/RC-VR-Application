@@ -7,21 +7,21 @@
             "actions": [
                 {
                     "name": "Forward",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "96f55f3a-6cff-478d-a711-595a9f69567c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Backward",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "1847af4a-1ca0-46c5-8f86-c461ea95c8dc",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -39,7 +39,7 @@
                 {
                     "name": "",
                     "id": "57e1f3ce-d273-4f24-847c-ed814038a526",
-                    "path": "<XRController>{RightHand}/triggerButton",
+                    "path": "<XRController>{RightHand}/{trigger}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -61,7 +61,7 @@
                 {
                     "name": "",
                     "id": "464b7c06-32ae-42ad-84b9-5a7ba01fbe31",
-                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "path": "<XRController>{LeftHand}/{trigger}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

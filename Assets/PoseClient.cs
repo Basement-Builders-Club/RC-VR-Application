@@ -29,7 +29,7 @@ public class PoseClient : MonoBehaviour
             while (true)
             {
                 // Buffer to store the data
-                byte[] data = new byte[8];
+                byte[] data = new byte[16];
                 int bytes = stream.Read(data, 0, data.Length);
 
                 // Convert the byte array to a string

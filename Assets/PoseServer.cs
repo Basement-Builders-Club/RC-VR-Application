@@ -12,8 +12,11 @@ public class PoseServer : MonoBehaviour
     private NetworkStream stream;
 
     public GameObject wheel;
-    private bool rightTriggerPressed;
-    private bool leftTriggerPressed;
+    private float rightTriggerPressed;
+    private float leftTriggerPressed;
+    private float triggerSum;
+    private float leftTriggerVal;
+    private float rightTriggerVal;
 
     public PlayerInputActions inputActions;
 
@@ -42,12 +45,12 @@ public class PoseServer : MonoBehaviour
 
     private void OnRightTriggerAction(InputAction.CallbackContext context)
     {
-        rightTriggerPressed = context.ReadValueAsButton();
+        rightTriggerPressed = context.ReadValue<float>();
     }
 
     private void OnLeftTriggerAction(InputAction.CallbackContext context)
     {
-        leftTriggerPressed = context.ReadValueAsButton();
+        leftTriggerPressed = context.ReadValue<float>();
     }
 
     void Start()
@@ -76,17 +79,8 @@ public class PoseServer : MonoBehaviour
             int angle = (int) wheel.transform.eulerAngles.z;
 
             // Create the message to send
-            int triggerVal = 0;
-
-            if (rightTriggerPressed)
-            {
-                triggerVal += 1;
-            }
-            if (leftTriggerPressed)
-            {
-                triggerVal -= 1;
-            }
-
+            int triggerVal = (int)((rightTriggerPressed - leftTriggerPressed) * 10000);
+            Debug.Log($"Right: {rightTriggerPressed}, Left: {leftTriggerPressed}, TriggerVal: {triggerVal}");
 
             string message = $"~,{angle},{triggerVal};";
 
